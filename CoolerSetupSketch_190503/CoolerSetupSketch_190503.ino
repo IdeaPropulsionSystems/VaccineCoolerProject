@@ -24,9 +24,15 @@
 #include <SD.h>                  // used by SD card reader
 
 // FAN ------------
+int fanPinGND = 2;
+int fanPinVCC = 3;
 int fanPin = 4;
 
 // RTC -------------
+int RTCVCCpin = 8;
+int SDreaderVCCpin = 7;
+
+
 #define DS3231_I2C_ADDRESS 0x68 
 // Convert normal decimal numbers to binary coded decimal
 byte decToBcd(byte val)
@@ -88,14 +94,25 @@ OneWire oneWire(9);
 DallasTemperature tempSensor(&oneWire);
 
 void setup() {
-pinMode(fanPin, OUTPUT);  
-digitalWrite(fanPin, LOW);
+
 Serial.begin(9600);
 Wire.begin();
 
+//Set up Pins
 
+pinMode(RTCVCCpin, OUTPUT);
+pinMode(SDreaderVCCpin, OUTPUT);
+pinMode(fanPinGND, OUTPUT);
+pinMode(fanPinVCC, OUTPUT);  
+pinMode(fanPin, OUTPUT);  
 
+digitalWrite(RTCVCCpin, HIGH);
+digitalWrite(SDreaderVCCpin, HIGH);
+digitalWrite(fanPinGND, LOW);  
+digitalWrite(fanPinVCC, HIGH);
+digitalWrite(fanPin,LOW);
 
+delay(500); //let power stapalize for peripherals
 
 
 
@@ -179,8 +196,8 @@ Serial.println("TESTING SD CARD:");
   } 
 
 Serial.println("FAN TEST: Is the fan pulsing on and off?");
-pinMode(fanPin, OUTPUT);  
-  digitalWrite(fanPin, LOW);
+
+
 
 Serial.println("END OF SYSTEM TEST ----------------------");
 }
