@@ -1,0 +1,7 @@
+Libraries needed for CoolerSetupSketch:
+
+#include <Wire.h>                // used for RTC
+#include <DS3231.h>              // used for RTC
+#include <OneWire.h>             // used to read temperature sensors
+#include <DallasTemperature.h>   // used to read temperature sensors
+#include <SD.h>                  // used by SD card reader
