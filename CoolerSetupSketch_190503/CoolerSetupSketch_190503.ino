@@ -89,7 +89,7 @@ byte *year
 File myFile;
 
 //SENSORS ------------
-// Data wire is connected to GPIO8
+// Data wire is connected to GPIO9
 OneWire oneWire(9);
 DallasTemperature tempSensor(&oneWire);
 
@@ -195,7 +195,7 @@ Serial.println("TESTING SD CARD:");
     Serial.println("error opening test.txt");
   } 
 
-Serial.println("FAN TEST: Is the fan pulsing on and off?");
+Serial.println("TESTING FAN: Is the fan pulsing on and off?");
 
 
 
